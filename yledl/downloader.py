@@ -32,6 +32,11 @@ class YleDlDownloader(object):
 
             outputfile = self.output_name_for_clip(clip, downloader, io)
             self.log_output_file(outputfile)
+
+            if io.skip and os.path.exists(outputfile):
+                logger.warning('%s exists, download skipped', outputfile)
+                return (RD_SUCCESS, outputfile)
+
             dl_result = downloader.save_stream(outputfile, io)
 
             if dl_result == RD_SUCCESS:

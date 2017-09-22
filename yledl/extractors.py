@@ -234,7 +234,7 @@ class Clip(object):
         filename = sane_filename(title, io.excludechars) + ext
         if io.destdir:
             filename = os.path.join(io.destdir, filename)
-        if not resume_job:
+        if not (resume_job or io.skip):
             filename = self.next_available_filename(filename)
         return filename
 

@@ -150,6 +150,8 @@ def arg_parser():
                           help='Output Windows-compatible filenames')
     io_group.add_argument('--resume', action='store_true',
                           help='Resume a partial download')
+    io_group.add_argument('--skip', action='store_true',
+                          help='Skip if file exists')
     io_group.add_argument('--ratelimit', metavar='BR', type=int,
                           help='Maximum bandwidth consumption, '
                           'interger in kB/s')
@@ -335,7 +337,8 @@ def main(argv=sys.argv):
     io = IOContext(args.outputfile, args.preferformat, args.destdir,
                    args.resume, dl_limits, excludechars, args.proxy,
                    args.sublang == 'all', args.rtmpdump,
-                   args.adobehds, args.ffmpeg, args.ffprobe, args.wget)
+                   args.adobehds, args.ffmpeg, args.ffprobe, args.wget,
+                   args.skip)
 
     urls = []
     if args.url:
